@@ -15,7 +15,8 @@ class Perceptron:
 
     def entrenar(self, entradas, salidas):
 
-        if len(entradas):
+        muestras = len(entradas)
+        if muestras:
             dimension_de_x = len( entradas[0] )
         else:
             dimension_de_x = 0
@@ -25,6 +26,24 @@ class Perceptron:
 
         #salidas_ = [elemento if elemento == 1 else -1 for elemento in salidas]
         #print(salidas_)
+
+        for epocas in range(self.epocas):
+            print(f"{epocas:>2d}","-" * 60)
+            contador_de_errores = 0
+            for muestra in range(muestras):
+                print(self.sesgo, self.pesos)
+                sumatoria = sum(xi * wi for xi, wi in zip(entradas[muestra], self.pesos)) + self.sesgo
+                resultado = self.funcion_activacion(sumatoria)
+                error = salidas[muestra] - resultado
+                if error != 0:
+                    contador_de_errores += 1
+                    for indice, valor in enumerate(entradas[muestra]):
+                        self.pesos[indice] += self.ca * error * valor
+                    self.sesgo += self.ca * error
+
+            if contador_de_errores == 0:
+                break
+
 
 
     def test(self, I, O):
@@ -50,7 +69,7 @@ def main():
               0,
               1]
 
-    red.test(entradas, salida)
+    red.entrenar(entradas, salida)
 
 if __name__ == "__main__":
     main()
