@@ -23,8 +23,8 @@ class Perceptron:
         self.pesos = [0] * dimension_de_x
         self.sesgo = 0
 
-        salidas_ = [elemento if elemento == 1 else -1 for elemento in salidas]
-        print(salidas_)
+        #salidas_ = [elemento if elemento == 1 else -1 for elemento in salidas]
+        #print(salidas_)
 
 
     def test(self, I, O):
