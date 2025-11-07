@@ -50,7 +50,7 @@ def main():
               0,
               1]
 
-    red.test(entradas, salidas)
+    red.test(entradas, salida)
 
 if __name__ == "__main__":
     main()
