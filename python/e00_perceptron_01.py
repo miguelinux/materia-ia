@@ -13,8 +13,24 @@ class Perceptron:
     def set_funcion_activacion(self, funcion):
         self.funcion_activacion = funcion
 
-    def test(self):
+    def entrenar(entradas, salidas):
+
+        if len(entradas):
+            dimension_de_x = len( entradas[0] )
+        else:
+            dimension_de_x = 0
+
+        self.pesos = [0] * dimension_de_x
+        self.sesgo = 0
+
+        salidas_ = [elemento if elemento == 1 else -1 for elemento in salidas]
+        print(salidas_)
+
+
+    def test(self, I, O):
         print(self.funcion_activacion(-1))
+        self.entrenar(I,O)
+
 
 def escalon(valor):
     if valor >= 0:
@@ -28,12 +44,13 @@ def main():
                  [0, 1],
                  [1, 0],
                  [1, 1] ]
+
     salida = [0,
               0,
               0,
               1]
 
-    red.test()
+    red.test(entradas, salidas)
 
 if __name__ == "__main__":
     main()
