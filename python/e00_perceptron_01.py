@@ -44,6 +44,14 @@ class Perceptron:
             if contador_de_errores == 0:
                 break
 
+    def predecir(self, entradas):
+        salida = []
+        for indice, valor in enumerate(entradas):
+                sumatoria = sum(xi * wi for xi, wi in zip(valor, self.pesos)) + self.sesgo
+                resultado = self.funcion_activacion(sumatoria)
+                salida.append(resultado)
+        return salida
+
 
 
     def test(self, I, O):
@@ -70,6 +78,9 @@ def main():
               1]
 
     red.entrenar(entradas, salida)
+    res = red.predecir(entradas)
+    print("*" * 60)
+    print(res, "=", salida)
 
 if __name__ == "__main__":
     main()
