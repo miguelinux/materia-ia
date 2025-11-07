@@ -13,7 +13,7 @@ class Perceptron:
     def set_funcion_activacion(self, funcion):
         self.funcion_activacion = funcion
 
-    def entrenar(entradas, salidas):
+    def entrenar(self, entradas, salidas):
 
         if len(entradas):
             dimension_de_x = len( entradas[0] )
