@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # vi: set shiftwidth=4 tabstop=8 expandtab:
 
+import matplotlib.pyplot as plt
+
 class Perceptron:
 
     def __init__(self, coeficiente_aprendizaje = 0.01, epocas = 50):
@@ -9,6 +11,8 @@ class Perceptron:
         self.epocas = epocas
         self.sesgo = None
         self.pesos = None
+        self.x = []
+        self.y = []
         
     def set_funcion_activacion(self, funcion):
         self.funcion_activacion = funcion
@@ -29,6 +33,14 @@ class Perceptron:
             contador_de_errores = 0
             for muestra in range(muestras):
                 print(self.sesgo, self.pesos)
+                if self.pesos[1] != 0:
+                    self.x.append(-0.5)
+                    self.y.append(self.pesos[0]/-self.pesos[1] * -0.5 +
+                              self.sesgo/-self.pesos[1])
+                    self.x.append(1.5)
+                    self.y.append(self.pesos[0]/-self.pesos[1] *  1.5 +
+                              self.sesgo/-self.pesos[1])
+
                 sumatoria = sum(xi * wi for xi, wi in zip(entradas[muestra], self.pesos)) + self.sesgo
                 resultado = self.funcion_activacion(sumatoria)
                 error = salidas[muestra] - resultado
@@ -48,3 +60,19 @@ class Perceptron:
                 resultado = self.funcion_activacion(sumatoria)
                 salida.append(resultado)
         return salida
+
+    def graficar_linea(self, entradas):
+        entrada_x = []
+        entrada_y = []
+        for indice, valor in enumerate(entradas):
+            entrada_x.append(valor[0])
+            entrada_y.append(valor[1])
+
+        plt.plot(entrada_x, entrada_y, "o")
+
+        for contador in range(len(self.x)//2):
+            plt.plot(self.x[contador*2:contador*2+2],
+                     self.y[contador*2:contador*2+2], label="L"+str(contador))
+        plt.legend()
+        plt.grid(True)
+        plt.show()

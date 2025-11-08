@@ -26,5 +26,7 @@ def main():
     print("*" * 60)
     print(res, "=", salida)
 
+    red.graficar_linea(entradas)
+
 if __name__ == "__main__":
     main()
