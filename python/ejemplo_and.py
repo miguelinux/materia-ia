@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # vi: set shiftwidth=4 tabstop=8 expandtab:
 
+from perceptron import Perceptron
+
 def escalon(valor):
     if valor >= 0:
         return 1
