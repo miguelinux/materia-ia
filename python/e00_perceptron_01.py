@@ -24,11 +24,8 @@ class Perceptron:
         self.pesos = [0] * dimension_de_x
         self.sesgo = 0
 
-        #salidas_ = [elemento if elemento == 1 else -1 for elemento in salidas]
-        #print(salidas_)
-
-        for epocas in range(self.epocas):
-            print(f"{epocas:>2d}","-" * 60)
+        for epoca in range(self.epocas):
+            print(f"{epoca:>2d}","-" * 60)
             contador_de_errores = 0
             for muestra in range(muestras):
                 print(self.sesgo, self.pesos)
